@@ -1,0 +1,73 @@
+//=============================================================================
+// Projet : ImpScreen
+// Fichier : impscreen.rc
+//
+//=============================================================================
+
+#include "resources.h"
+
+
+//=============================================================================
+//                        Icones de l'application
+//=============================================================================
+
+IDI_ICONE ICON DISCARDABLE "icones/camera.ico"
+
+IDB_CAPTURER BITMAP DISCARDABLE "icones/capturer.bmp"
+
+IDI_QUALITY ICON DISCARDABLE "icones/quality.ico"
+
+//=============================================================================
+//                              Style XP
+//=============================================================================
+
+1 24 "manifest.xml"
+
+//=============================================================================
+//                        DialogBox principale
+//=============================================================================
+
+DIALOGBOXPRINCIPALE DIALOGEX 60, 60, 232, 150
+CAPTION NOM_APP
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_BORDER | WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU | WS_OVERLAPPED | WS_VISIBLE
+BEGIN
+     CONTROL "", LST_CAPTURES, WC_LISTVIEW, WS_BORDER | LVS_REPORT | LVS_SINGLESEL, 5, 32, 222, 112
+END
+
+//=============================================================================
+//                     DialogBox de capture d'écran
+//=============================================================================
+
+CAPTURER DIALOGEX 20, 30, 190, 80
+CAPTION "Capturer"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED | WS_VISIBLE
+BEGIN
+     GROUPBOX "", -1, 5, 1, 180, 60
+     ICON IDI_QUALITY, -1, 10, 8, 32, 32
+     CONTROL "", TRB_TRACKBAR, TRACKBAR_CLASS, TBS_AUTOTICKS | WS_TABSTOP, 30, 10, 150, 16 
+     LTEXT "Qualité :", -1, 70, 30, 30, 10
+     LTEXT "75", TXT_QUALITY, 100, 30, 12, 10
+     AUTOCHECKBOX " Ne pas capturer la fenêtre de l'application", CHB_CACHER_FENETRE, 10, 45, 150, 12
+     DEFPUSHBUTTON "      Capturer", BT_CAPTURER, 5, 65, 85, 12, BS_LEFT
+     PUSHBUTTON "Annuler", BT_ANNULER, 100, 65, 85, 12
+END
+
+//=============================================================================
+//                   DialogBox de renommage de capture
+//=============================================================================
+
+RENOMMER DIALOGEX 20, 30, 190, 80
+CAPTION "Renommer"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED | WS_VISIBLE
+BEGIN
+     GROUPBOX "", -1, 5, 1, 180, 60
+     LTEXT "Nom de la capture :", -1, 10, 15, 70, 10
+     EDITTEXT IDE_NOM_CAPTURE, 80, 14, 90, 12, ES_AUTOHSCROLL | ES_READONLY
+     LTEXT "Nouveau nom :", -1, 10, 40, 50, 10
+     EDITTEXT IDE_NVNOM_CAPTURE, 80, 39, 90, 12
+     DEFPUSHBUTTON "Renommer", BT_RENOMMER, 5, 65, 85, 12
+     PUSHBUTTON "Annuler", BT_ANNULER2, 100, 65, 85, 12
+END
